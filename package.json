@@ -1,0 +1,16 @@
+{
+  "name": "westories",
+  "version": "1.0.0",
+  "description": "Web App to Add/Write Public and Private Stories",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Mac Villegas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.2"
+  }
+}
