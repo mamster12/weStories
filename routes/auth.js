@@ -14,11 +14,11 @@ router.get('/google/callback',
     });
 
 router.get('/verify', (req, res) => {
-    if(req.user){
-        console.log(req.user);
-    }else{
-        console.log('not auth');
-    }
+    // if(req.user){
+    //     console.log(req.user);
+    // }else{
+    //     console.log('not auth');
+    // }
 });
 
 router.get('/logout', (req, res) => {
