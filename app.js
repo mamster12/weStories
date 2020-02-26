@@ -9,7 +9,7 @@ const passport = require('passport');
 const app = express();
 
 //require user model
-require('./models/User');
+require('./models/User.js');
 
 //load config
 require('./config/passport')(passport);
