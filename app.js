@@ -1,7 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path    = require('path');
-
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
@@ -9,7 +8,7 @@ const passport = require('passport');
 const app = express();
 
 //require user model
-require('./models/User.js');
+require('./models/User');
 
 //load config
 require('./config/passport')(passport);
