@@ -4,8 +4,7 @@ const keys = require('./keys');
 
 //load user model
 // //require user model
-require('../models/User');
-const User = mongoose.model('users');
+const User = require('../models/User');
 
 module.exports = function (passport) {
   passport.use(new GoogleStrategy({
