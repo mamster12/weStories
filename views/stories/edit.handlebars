@@ -1,1 +1,44 @@
-<h1>add</h1>
+<div class="container">
+    <h3>Edit Story</h3>
+    <div class="row">
+        <form action="/stories/{{story.id}}?_method=PUT" method="post" class="col s12">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="title" type="text" class="validate" name="title" value="{{story.title}}">
+                    <label for="password">Title</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="status">
+                        {{#select story.status}}
+                        <option value="Public" selected>Public</option>
+                        <option value="Private">Private</option>
+                        <option value="Unpublished">Unpublished</option>
+                        {{/select}}
+                    </select>
+                    <label for="status">Status</label>
+                </div>
+            </div>
+            <div class="row">
+                <p class="col s12">
+                    <label>
+                        <input type="checkbox" name="allowComments" class="filled-in" {{#if story.allowComments}}checked="checked"{{/if}}
+                            id="allowComments" />
+                        <span>Allow Comments</span>
+                    </label>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <h5>Tell us your story:</h5>
+                    <textarea id="body" class="materialize-textarea" name="body">{{story.body}}</textarea>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">SAVE
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
+</div>

@@ -26,14 +26,8 @@ main {
     background-size: cover;
     background-position: center;
     min-height: 90vh;
-    padding: 50px 0;
-    line-height: 1.5;
     color: #fff;
-    font-size: 1.5rem;
-}
-
-#welcome h1 {
-    font-size: 6rem;
+    font-size: 1.2rem;
 }
 
 .card {
@@ -49,7 +43,7 @@ main {
 }
 
 .text-card {
-    height: 150px;
+    height: 250px;
 }
 
 #delete-btn {
@@ -62,4 +56,12 @@ main {
 
 #editBtn {
     margin-left: 5px;
+}
+
+.welcome-text {
+    padding-bottom: 10px;
+}
+
+.local-library {
+    display: inline;
 }

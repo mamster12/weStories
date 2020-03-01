@@ -1,6 +1,7 @@
 <div class="container padTopBot">
-    <h3>Welcome, {{user.firstName}}</h3>
-    <h4>Your Stories</h4>
+    <h3 class="show-card">Welcome, {{user.firstName}}</h3>
+    <div class="divider"></div>
+    <h4 class="show-card">Your Stories</h4>
     {{#if stories}}
     <table id="story-table" class="striped blue-grey lighten-4">
         <thead class="blue-grey lighten-1">
@@ -13,16 +14,18 @@
         </thead>
 
         <tbody>
-            
+
             {{#each stories}}
             <tr>
                 <td class="tb-padding"><a href="/stories/show/{{id}}">{{title}}</a></td>
                 <td class="tb-padding">{{formatDate date 'MMMM Do YYYY'}}</td>
                 <td class="tb-padding">{{status}}</td>
                 <td>
-                    <a href="/stories/edit/{{id}}" class="btn-small blue waves-effect waves-light"><i class="fa fa-pencil" aria-hidden="true"></i>EDIT</a>
-                    <form  id="delete-btn" action="/stories/{{id}}" method="post">
-                        <button type="submit" class="btn-small left-align red waves-effet waves-light">DELETE</button>
+                    <a href="/stories/edit/{{id}}" class="btn-small blue waves-effect waves-light"><id
+                            class="fa fa-pencil" aria-hidden="true"></i>   E  D  I  T</a>
+                    <form id="delete-btn" action="/stories/{{id}}?_method=DELETE" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn-small left-align red waves-effet waves-light"><i class="fa fa-times" aria-hidden="true"></i>DELETE</button>
                     </form>
                 </td>
             </tr>

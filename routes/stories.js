@@ -45,7 +45,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
     //save to db
     new Story(newStory)
         .save()
-        .then(stories => {
+        .then(story => {
             res.redirect(`/stories/show/${story.id}`);
         });
 });
@@ -60,4 +60,49 @@ router.get('/show/:id', (req, res) => {
             });
         });
 });
+
+//edit story 
+router.get('/edit/:id', (req, res) => {
+    Story.findOne({ _id: req.params.id })
+        .then(story => {
+            res.render('stories/edit', {
+                story: story
+            });
+        });
+});
+
+//update db from edit form
+router.put('/:id', (req, res) => {
+    Story.findOne({ _id: req.params.id })
+        .then(story => {
+            let allowComments;
+
+            //check if allowComments is on
+            if (req.body.allowComments) {
+                allowComments = true;
+            } else {
+                allowComments = false;
+            }
+
+            story.title = req.body.title;
+            story.status = req.body.status;
+            story.allowComents = allowComments;
+            story.body = req.body.body;
+
+            story.save()
+                .then(story => {
+                    res.redirect('/dashboard');
+                });
+        });
+});
+
+//delete a story
+
+router.delete("/:id", (req, res) => {
+    Story.deleteOne({ _id: req.params.id })
+        .then(story => {
+            res.redirect("/dashboard");
+        });
+});
+
 module.exports = router;
