@@ -1,2 +1,35 @@
-<h3>Welcome, {{user.firstName}}!</h3>
-<h4>Your Stories</h4>
+<div class="container padTopBot">
+    <h3>Welcome, {{user.firstName}}</h3>
+    <h4>Your Stories</h4>
+    {{#if stories}}
+    <table id="story-table" class="striped blue-grey lighten-4">
+        <thead class="blue-grey lighten-1">
+            <tr>
+                <th class="tb-padding">Title</th>
+                <th class="tb-padding">Date</th>
+                <th class="tb-padding">Status</th>
+                <th class="tb-padding"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
+            {{#each stories}}
+            <tr>
+                <td class="tb-padding"><a href="/stories/show/{{id}}">{{title}}</a></td>
+                <td class="tb-padding">{{formatDate date 'MMMM Do YYYY'}}</td>
+                <td class="tb-padding">{{status}}</td>
+                <td>
+                    <a href="/stories/edit/{{id}}" class="btn-small blue waves-effect waves-light"><i class="fa fa-pencil" aria-hidden="true"></i>EDIT</a>
+                    <form  id="delete-btn" action="/stories/{{id}}" method="post">
+                        <button type="submit" class="btn-small left-align red waves-effet waves-light">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    You have not created a story.
+    {{/if}}
+</div>

@@ -8,7 +8,7 @@
             <li class="hide-on-small-only"><a href="#">Hi <em>{{user.firstName}}</em> </a></li>
             {{else}}
             {{/if}}
-            <li class="hide-on-med-and-down"><a href="#">Public Stories <i class="fa fa-book"
+            <li class="hide-on-med-and-down"><a href="/stories">Public Stories <i class="fa fa-book"
                         aria-hidden="true"></i></a>
             </li>
         </ul>
@@ -30,16 +30,16 @@
                 <a href="#email"><span class="white-text email">{{user.email}}</span></a>
             </div>
         </li>
-        <li><a href="#"><i class="material-icons">library_books</i>Public Stories</a></li>
+        <li><a href="/stories"><i class="material-icons">library_books</i>Public Stories</a></li>
         <li><div class="divider"></div></li>
-        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>Dashboard</a></li>
+        <li><a href="/"><i class="fa fa-cog" aria-hidden="true"></i>Dashboard</a></li>
         <li><div class="divider"></div></li>
-        <li><a href="#"><i class="fa fa-archive" aria-hidden="true"></i>My Stories</a></li>
+        <li><a href="/stories/show"><i class="fa fa-archive" aria-hidden="true"></i>My Stories</a></li>
         <li><div class="divider"></div></li>
         <li><a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
     {{else}}
         <li class="cyan darken-4 white-text center">weStories</li>
-        <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>Public Stories</a></li>
+        <li><a href="/stories"><i class="fa fa-book" aria-hidden="true"></i>Public Stories</a></li>
         <li><div class="divider"></div></li>
         <li><div class="center-align">
             <a class="red darken-1 waves-effect waves-light btn" href="/auth/google"><i class="fa fa-google-plus"

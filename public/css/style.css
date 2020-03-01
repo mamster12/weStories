@@ -1,12 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+.padTopBot {
+    padding: 30px 0 100px 0;
+}
+
 body {
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
 nav {
-    font-family: 'Roboto Condensed', sans-serif;
     margin-bottom: 0;
 }
 
@@ -18,17 +25,41 @@ main {
     background-image: url('https://images.pexels.com/photos/261577/pexels-photo-261577.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
     background-size: cover;
     background-position: center;
-    height: 90vh;
-    padding-top: 50px;
+    min-height: 90vh;
+    padding: 50px 0;
+    line-height: 1.5;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+}
+
+#welcome h1 {
+    font-size: 6rem;
+}
+
+.card {
+    padding: 5px;
+}
+
+.show-card {
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .footer-copyright {
     border-top: 0.5px white solid;
 }
 
+.text-card {
+    height: 150px;
+}
 
-/* .footer1 {
-    border-right: 1px white solid;
-} */
+#delete-btn {
+    display: inline;
+}
+
+.tb-padding {
+    padding: 15px;
+}
+
+#editBtn {
+    margin-left: 5px;
+}
