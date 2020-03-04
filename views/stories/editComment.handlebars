@@ -1,0 +1,8 @@
+<div class="container padTopBot">
+    <form action="/stories/{{story_id}}/comment/{{comment.id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <label for="editComment">Edit comment</label>
+        <textarea name="commentBody" id="commentBody" cols="30" rows="10">{{comment.body}}</textarea>
+        <input type="submit" value="Submit" class="btn grey">
+    </form>
+</div>

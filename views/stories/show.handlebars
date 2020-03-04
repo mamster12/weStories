@@ -6,11 +6,50 @@
             <div class="card-panel blue lighten-5">
                 {{{story.body}}}
             </div>
+            {{#if story.allowComments}}
+            <div class="card-panel">
+                <h6 class="grey-text">Comments:</h6>
+                {{#each story.comments}}
+                <p>{{body}}</p>
+
+                <div class="chip grey white-text">
+                    <img src="{{user.image}}">
+                    {{user.firstName}} {{user.lastName}}
+                </div>
+                {{#ifEquals user.id '==' @root.currentUser.id}}
+                <a href="/stories/{{@root.story.id}}/comment/{{id}}/edit"><button
+                        class="blue white-text">Edit</button></a>
+                <form id="delete-comment-btn" action="/stories/{{@root.story.id}}/comment/{{id}}?_method=DELETE"
+                    method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="red white-text" value="delete"
+                        data-confirm="Are you sure you want to delete?">
+                </form>
+                <div><label>{{formatDate date 'MMMM Do YYYY, h:mm a'}}</label></div>
+                {{/ifEquals}}
+                <hr>
+                {{else}}
+                <p>No comments yet.</p>
+                {{/each}}
+            </div>
+
+
+            {{#if @root.currentUser}}
+            <form action="/stories/{{story.id}}/comment" method="post">
+                <label for="addComment">Add a comment</label>
+                <textarea name="commentBody" id="commentBody" cols="30" rows="10"></textarea>
+                <input type="submit" value="Submit" class="btn grey">
+            </form>
+            {{else}}
+            Please <a href="/auth/google">log-in</a> to add a comment.
+            {{/if}}
+            {{/if}}
         </div>
+
         <div class="col s12 m4">
             <div class="show-card card grey lighten-2 black-text center-align">
                 <div><span class="card-title black-text">{{story.user.firstName}} {{story.user.lastName}}</span></div>
-                    <img class="circle responsive-img" src="{{story.user.image}}" width="200">
+                <img class="circle responsive-img" src="{{story.user.image}}" width="200">
                 <div class="card-action">
                     <a href="/dashboard" class="btn grey">Check My Stories</a>
                 </div>

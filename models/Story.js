@@ -19,19 +19,10 @@ const StorySchema = new Schema({
         default: true
     },
     comments: [{
-        commentBody: {
-            type: String,
-            require: true
-        },
-        commentUser: {
-            type: Schema.Types.ObjectId,
-            ref: 'users'
-        },
-        commentDate: {
-            type: Date,
-            default: Date.now
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'comments'
     }],
+
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'

@@ -65,3 +65,11 @@ main {
 .local-library {
     display: inline;
 }
+
+.fa-pencil {
+    font-size: 17px;
+}
+
+#delete-comment-btn {
+    display: inline;
+}

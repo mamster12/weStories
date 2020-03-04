@@ -6,10 +6,12 @@ const { ensureAuthenticated, ensureGuest } = require('../helpers/auth');
 // load models js
 const User = mongoose.model('users');
 const Story = mongoose.model('stories');
+const Comment = mongoose.model('comments');
 
 router.get('/', (req, res) => {
     Story.find({ status: 'Public' })
         .populate('user')
+        .sort({ date: 'desc' })
         .then(stories => {
             res.render('stories/index', {
                 stories: stories
@@ -54,6 +56,7 @@ router.post('/', ensureAuthenticated, (req, res) => {
 router.get('/show/:id', (req, res) => {
     Story.findOne({ _id: req.params.id })
         .populate('user')
+        .populate('comments')
         .then(story => {
             res.render('stories/show', {
                 story: story
@@ -86,7 +89,7 @@ router.put('/:id', (req, res) => {
 
             story.title = req.body.title;
             story.status = req.body.status;
-            story.allowComents = allowComments;
+            story.allowComments = allowComments;
             story.body = req.body.body;
 
             story.save()
@@ -104,5 +107,6 @@ router.delete("/:id", (req, res) => {
             res.redirect("/dashboard");
         });
 });
+
 
 module.exports = router;

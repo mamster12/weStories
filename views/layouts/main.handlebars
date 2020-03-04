@@ -22,7 +22,7 @@
     <header>
         {{>_header}}
     </header>
-    {{#if user}}
+    {{#if currentUser}}
     {{>_add-btn}}
     {{/if}}
     <main>
@@ -51,9 +51,21 @@
             $('.parallax').parallax();
         });
 
-
-
         CKEDITOR.replace('body');
+
+        $(document).on('click', ':not(form)[data-confirm]', function (e) {
+            if (!confirm($(this).data('confirm'))) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        });
+
+        $(document).on('submit', 'form[data-confirm]', function (e) {
+            if (!confirm($(this).data('confirm'))) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        });
 
     </script>
 </body>

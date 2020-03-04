@@ -12,6 +12,7 @@ const app = express();
 //require user model
 require('./models/User');
 require('./models/Story');
+require('./models/Comment');
 
 //load config
 require('./config/passport')(passport);
@@ -24,13 +25,15 @@ const {
     truncate,
     stripTags,
     formatDate,
-    select
+    select,
+    ifEquals
 } = require('./helpers/hbs');
 
 //load routes
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const stories = require('./routes/stories');
+const comments = require('./routes/comments');
 
 mongoose.Promise = global.Promise;
 //Mongoose Connect
@@ -47,7 +50,8 @@ app.engine('handlebars', exphbs({
         truncate: truncate,
         stripTags: stripTags,
         formatDate: formatDate,
-        select: select
+        select: select,
+        ifEquals: ifEquals
     }
 }));
 app.set('view engine', 'handlebars');
@@ -75,7 +79,7 @@ app.use(passport.session());
 
 //global vars
 app.use((req, res, next) => {
-    res.locals.user = req.user || null;
+    res.locals.currentUser = req.user || null;
     next();
 });
 
@@ -83,6 +87,8 @@ app.use((req, res, next) => {
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/stories', stories);
+app.use('/stories/:id/comment', comments);
+// app.use('/stories/show/:id/comment', comments);
 
 
 const port = process.env.PORT || 3000;
