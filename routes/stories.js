@@ -49,6 +49,9 @@ router.post('/', ensureAuthenticated, (req, res) => {
         .save()
         .then(story => {
             res.redirect(`/stories/show/${story.id}`);
+        })
+        .catch(err => {
+            res.redirect('stories/add');
         });
 });
 
@@ -58,24 +61,67 @@ router.get('/show/:id', (req, res) => {
         .populate('user')
         .populate('comments')
         .then(story => {
-            res.render('stories/show', {
-                story: story
+            if (story.status == "Public") {
+                res.render('stories/show', {
+                    story: story
+                });
+            } else {
+                if (req.user) {
+                    if (req.user.id == story.user._id) {
+                        res.render('stories/show', {
+                            story: story
+                        });
+                    } else {
+                        console.log(story.user);
+                        res.redirect('/stories');
+                    }
+                } else {
+                    res.redirect('/stories');
+                }
+            }
+        });
+});
+
+//show single user stories
+router.get('/user/:userID', (req, res) => {
+    Story.find({ user: req.params.userID, status: 'Public' })
+        .populate('user')
+        .sort({ date: 'desc' })
+        .then(stories => {
+            res.render('stories/index', {
+                stories: stories
+            });
+        });
+});
+
+//shoy my stories
+router.get('/my', ensureAuthenticated, (req, res) => {
+    Story.find({ user: req.user.id })
+        .populate('user')
+        .sort({ date: 'desc' })
+        .then(stories => {
+            res.render('stories/index', {
+                stories: stories
             });
         });
 });
 
 //edit story 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Story.findOne({ _id: req.params.id })
         .then(story => {
-            res.render('stories/edit', {
-                story: story
-            });
+            if (story.user != req.user.id) {
+                res.redirect('/stories');
+            } else {
+                res.render('stories/edit', {
+                    story: story
+                });
+            }
         });
 });
 
 //update db from edit form
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
     Story.findOne({ _id: req.params.id })
         .then(story => {
             let allowComments;
@@ -101,7 +147,7 @@ router.put('/:id', (req, res) => {
 
 //delete a story
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", ensureAuthenticated, (req, res) => {
     Story.deleteOne({ _id: req.params.id })
         .then(story => {
             res.redirect("/dashboard");

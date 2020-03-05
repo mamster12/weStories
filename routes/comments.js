@@ -12,7 +12,7 @@ const Story = mongoose.model('stories');
 const Comment = mongoose.model('comments');
 
 //add comments
-router.post('/', (req, res) => {
+router.post('/', ensureAuthenticated, (req, res) => {
     Story.findOne({ _id: req.params.id })
         .then(story => {
             const newComment = {
@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
 });
 
 //delete comment
-router.delete("/:comment_id", (req, res) => {
+router.delete("/:comment_id", ensureAuthenticated, (req, res) => {
     Comment.deleteOne({ _id: req.params.comment_id })
         .then(comment => {
             res.redirect('/stories/show/' + req.params.id);
@@ -45,7 +45,7 @@ router.delete("/:comment_id", (req, res) => {
 });
 
 //render edit form for comment
-router.get('/:comment_id/edit', (req, res) => {
+router.get('/:comment_id/edit', ensureAuthenticated, (req, res) => {
     Comment.findOne({ _id: req.params.comment_id })
         .then(comment => {
             res.render('stories/editComment', {
@@ -56,7 +56,7 @@ router.get('/:comment_id/edit', (req, res) => {
 });
 
 //update or edit comment
-router.put('/:comment_id', (req, res) => {
+router.put('/:comment_id', ensureAuthenticated, (req, res) => {
     Comment.findOne({ _id: req.params.comment_id })
         .then(comment => {
 

@@ -13,6 +13,10 @@ body {
     flex-direction: column;
 }
 
+strong {
+    font-weight: bold;
+}
+
 nav {
     margin-bottom: 0;
 }
@@ -44,6 +48,7 @@ main {
 
 .text-card {
     height: 250px;
+    word-wrap: break-word;
 }
 
 #delete-btn {
@@ -70,6 +75,11 @@ main {
     font-size: 17px;
 }
 
-#delete-comment-btn {
-    display: inline;
+#delete-comment-btn,
+#editDelete {
+    display: inline-block;
+}
+
+.card-panel {
+    word-wrap: break-word;
 }
