@@ -148,9 +148,21 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
 //delete a story
 
 router.delete("/:id", ensureAuthenticated, (req, res) => {
-    Story.deleteOne({ _id: req.params.id })
+    Story.findOne({ _id: req.params.id })
         .then(story => {
-            res.redirect("/dashboard");
+            story.comments.forEach(comment => {
+                Comment.deleteOne({
+                    _id: comment
+                }).then(comment => {
+                    Story.deleteOne({ _id: req.params.id })
+                        .then(story => {
+                            res.redirect("/dashboard");
+                        })
+                        .catch(err => {
+                            res.redirect("/dashboard");
+                        });
+                });
+            });
         });
 });
 
