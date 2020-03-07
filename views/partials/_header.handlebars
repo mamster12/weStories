@@ -19,32 +19,49 @@
 {{!-- side menu --}}
 <ul id="slide-out" class="sidenav">
     {{#if currentUser}}
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTw7ScgPKbLLFmgwBds7kDVBb3AO8quJM3rJlpw71hydCcw8Gxt">
-                </div>
-                <a href="#user"><img class="circle" src="{{currentUser.image}}"></a>
-                <a href="#name"><span class="white-text name">{{currentUser.firstName}} {{currentUser.lastName}}</span></a>
-                <a href="#email"><span class="white-text email">{{currentUser.email}}</span></a>
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTw7ScgPKbLLFmgwBds7kDVBb3AO8quJM3rJlpw71hydCcw8Gxt">
             </div>
-        </li>
-        <li><a href="/stories"><i class="material-icons">library_books</i>Public Stories</a></li>
-        <li><div class="divider"></div></li>
-        <li><a href="/"><i class="fa fa-cog" aria-hidden="true"></i>Dashboard</a></li>
-        <li><div class="divider"></div></li>
-        <li><a href="/stories/my"><i class="fa fa-archive" aria-hidden="true"></i>My Stories</a></li>
-        <li><div class="divider"></div></li>
-        <li><a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+            <a href="#user"><img class="circle" src="{{currentUser.image}}"></a>
+            <a href="#name"><span class="white-text name">{{currentUser.firstName}} {{currentUser.lastName}}</span></a>
+            <a href="#email"><span class="white-text email">{{currentUser.email}}</span></a>
+        </div>
+    </li>
+    <li class="red accent-2">
+        <div class="container white-text alias">I'M {{currentUser.penName}}
+            {{!-- <a href=""><i class="fa fa-pencil white-text" aria-hidden="true"></i></a> --}}
+        </div>
+    </li>
+    <li>
+        <div class="divider alias-div"></div>
+    </li>
+    <li><a href="/stories"><i class="material-icons">library_books</i>Public Stories</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="/"><i class="fa fa-cog" aria-hidden="true"></i>Dashboard</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="/stories/my"><i class="fa fa-archive" aria-hidden="true"></i>My Stories</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
     {{else}}
-        <li class="cyan darken-4 white-text center">weStories</li>
-        <li><a href="/stories"><i class="fa fa-book" aria-hidden="true"></i>Public Stories</a></li>
-        <li><div class="divider"></div></li>
-        <li><div class="center-align">
+    <li class="cyan darken-4 white-text center">weStories</li>
+    <li><a href="/stories"><i class="fa fa-book" aria-hidden="true"></i>Public Stories</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>
+        <div class="center-align">
             <a class="red darken-1 waves-effect waves-light btn" href="/auth/google"><i class="fa fa-google-plus"
                     aria-hidden="true"></i> Login with google</a>
-            </div>
-        </li>
+        </div>
+    </li>
 </ul>
 {{/if}}

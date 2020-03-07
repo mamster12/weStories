@@ -10,6 +10,8 @@
             <div class="card-panel blue lighten-5">
                 {{{story.body}}}
             </div>
+            {{!-- <div>Rate this story:</div>
+            <div id="rater" class="grey"></div> --}}
             {{#if story.allowComments}}
             <div class="card-panel">
                 <h6 class="grey-text">Comments:</h6>
@@ -18,7 +20,7 @@
                 <a href="/stories/user/{{user.id}}">
                     <div class="chip grey white-text">
                         <img src="{{user.image}}">
-                        {{user.firstName}} {{user.lastName}}
+                        {{user.penName}}
                     </div>
                 </a>
                 {{#ifEquals user.id '==' @root.currentUser.id}}
@@ -32,15 +34,13 @@
                             data-confirm="Are you sure you want to delete?">
                     </form>
                 </div>
-                <div><label>{{formatDate date 'MMMM Do YYYY, h:mm a'}}</label></div>
                 {{/ifEquals}}
+                <div><label>{{formatDate date 'MMMM Do YYYY, h:mm a'}}</label></div>
                 <hr>
                 {{else}}
                 <p>No comments yet.</p>
                 {{/each}}
             </div>
-
-
             {{#if @root.currentUser}}
             <form action="/stories/{{story.id}}/comment" method="post">
                 <label for="addComment">Add a comment</label>
@@ -55,7 +55,7 @@
 
         <div class="col s12 m4">
             <div class="show-card card grey lighten-2 black-text center-align">
-                <div><span class="card-title black-text">{{story.user.firstName}} {{story.user.lastName}}</span></div>
+                <div><span class="card-title black-text">{{story.user.penName}}</span></div>
                 <img class="circle responsive-img" src="{{story.user.image}}" width="200">
                 <div class="card-action">
                     <a href="/stories/user/{{story.user.id}}" class="btn grey darken-1">Check My Stories</a>

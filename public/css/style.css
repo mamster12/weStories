@@ -83,3 +83,18 @@ main {
 .card-panel {
     word-wrap: break-word;
 }
+
+.sidenav .user-view {
+    margin-bottom: 0;
+}
+
+.sidenav .user-view .email {
+    padding-bottom: 0;
+    font-weight: 400;
+}
+.sidenav .alias-div {
+    margin:0;
+}
+.alias {
+    text-transform: uppercase;
+}

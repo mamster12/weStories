@@ -1,0 +1,14 @@
+<div class="container">
+   <h3>Add a Pen Name</h3><span>(CAREFUL! THIS WILL BE PERMANENT.)</span>
+    <div class="row">
+        <form action="/penname/{{currentUser.id}}" method="post" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="penName" type="text" class="validate" name="penName" required>
+                    <label for="penName">Something Legendary..</label>
+                </div>
+            <button class="btn waves-effect waves-light" type="submit">SUBMIT
+            </button>
+        </form>
+    </div>
+</div>

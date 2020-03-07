@@ -2,72 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Condensed|Roboto+Slab|Open+Sans+Condensed:300&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>weStories</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Condensed|Roboto+Slab|Open+Sans+Condensed:300&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>weStories</title>
 </head>
 
 <body>
-    <header>
-        {{>_header}}
-    </header>
-    {{#if currentUser}}
-    {{>_add-btn}}
-    {{/if}}
-    <main>
-        {{{body}}}
-    </main>
-    {{>_footer}}
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.sidenav').sidenav();
-            $('select').formSelect();
-        });
+  <header>
+    {{>_header}}
+  </header>
+  {{#if currentUser}}
+  {{>_add-btn}}
+  {{/if}}
+  <main>{{{body}}}</main>
+  {{>_footer}}
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/ckeditor/ckeditor.js"></script>
+  <script src="/rater-js-master/index.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".sidenav").sidenav();
+      $("select").formSelect();
+    });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.parallax');
-            var instances = M.Parallax.init(elems, options);
-        });
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".parallax");
+      var instances = M.Parallax.init(elems, options);
+    });
 
-        // Or with jQuery
+    // Or with jQuery
 
-        $(document).ready(function () {
-            $('.parallax').parallax();
-        });
+    $(document).ready(function () {
+      $(".parallax").parallax();
+    });
 
-        CKEDITOR.replace('body');
+    CKEDITOR.replace("body");
 
-        $(document).on('click', ':not(form)[data-confirm]', function (e) {
-            if (!confirm($(this).data('confirm'))) {
-                e.stopImmediatePropagation();
-                e.preventDefault();
-            }
-        });
+    $(document).on("click", ":not(form)[data-confirm]", function (e) {
+      if (!confirm($(this).data("confirm"))) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+      }
+    });
 
-        $(document).on('submit', 'form[data-confirm]', function (e) {
-            if (!confirm($(this).data('confirm'))) {
-                e.stopImmediatePropagation();
-                e.preventDefault();
-            }
-        });
+    $(document).on("submit", "form[data-confirm]", function (e) {
+      if (!confirm($(this).data("confirm"))) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+      }
+    });
 
-    </script>
+    var myRating = raterJs({
+      element: document.querySelector("#rater"),
+      rateCallback: function rateCallback(rating, done) {
+        this.setRating(rating);
+        done();
+      },
+      onHover: function (currentIndex, currentRating) {
+        document.querySelector(".live-rating").textContent = currentIndex;
+      },
+      onLeave: function (currentIndex, currentRating) {
+        document.querySelector(".live-rating").textContent = currentRating;
+      },
+      starSize: 32,
+      step: 0.5
+    });
+  </script>
 </body>
 
 </html>

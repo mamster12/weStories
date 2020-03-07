@@ -20,6 +20,9 @@ const CommentSchema = new Schema({
         },
         image: {
             type: String
+        },
+        penName: {
+            type: String
         }
     },
     date: {

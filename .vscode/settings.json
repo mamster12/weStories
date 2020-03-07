@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "[handlebars]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
+}

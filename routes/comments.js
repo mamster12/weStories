@@ -14,6 +14,7 @@ const Comment = mongoose.model('comments');
 //add comments
 router.post('/', ensureAuthenticated, (req, res) => {
     Story.findOne({ _id: req.params.id })
+        .populate('user')
         .then(story => {
             const newComment = {
                 body: req.body.commentBody,
@@ -21,7 +22,8 @@ router.post('/', ensureAuthenticated, (req, res) => {
                     id: req.user.id,
                     image: req.user.image,
                     firstName: req.user.firstName,
-                    lastName: req.user.lastName
+                    lastName: req.user.lastName,
+                    penName: req.user.penName
                 }
             }
 

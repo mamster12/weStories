@@ -10,7 +10,12 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
         // Successful authentication, redirect home.
-        res.redirect('/dashboard');
+        if(req.user.penName){
+            res.redirect('/dashboard');
+        }else {
+            res.redirect('/penname');
+        }
+        
     });
 
 router.get('/verify', (req, res) => {

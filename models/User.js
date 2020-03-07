@@ -16,6 +16,9 @@ const UserSchema = new Schema({
     lastName: {
         type: String
     },
+    penName: {
+        type: String
+    },
     image: {
         type: String
     }

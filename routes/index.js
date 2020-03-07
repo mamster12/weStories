@@ -11,6 +11,25 @@ router.get('/', ensureGuest, (req, res) => {
     res.render('index/welcome');
 });
 
+router.get('/penname', ensureAuthenticated, (req, res) =>{
+    if(req.user.penName){
+        res.redirect('/dashboard');
+    }else{
+        res.render('index/penName');
+    }
+})
+
+router.post('/penname/:id', ensureAuthenticated, (req, res) =>{
+    User.findOne({_id: req.params.id})
+    .then(user => {
+        user.penName = req.body.penName;
+        user.save()
+        .then(user => {
+            res.redirect('/dashboard');
+        })
+    })
+})
+
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
     Story.find({ user: req.user.id })
         .then(stories => {
