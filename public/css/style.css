@@ -17,7 +17,19 @@ body {
 strong {
     font-weight: bold;
 }
+.card-panel ul
+{
+    list-style: circle;
+    margin: initial;
+    padding: 0 0 0 40px;
+}
 
+.card-panel ul li
+{
+    display: list-item;
+    list-style: circle;
+}
+  
 nav {
     margin-bottom: 0;
 }
@@ -81,7 +93,7 @@ main {
     display: inline-block;
 }
 
-.card-panel {
+.card-panel{
     word-wrap: break-word;
 }
 
